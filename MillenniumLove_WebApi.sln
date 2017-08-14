@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MillenniumLove_WebApi", "MillenniumLove_WebApi\MillenniumLove_WebApi.csproj", "{C186D982-7F76-4110-8597-B3CA900B6489}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MillenniumLove_WebApi.Tests", "MillenniumLove_WebApi.Tests\MillenniumLove_WebApi.Tests.csproj", "{2255F459-962F-4F3F-AFE5-9A4A92B8F1AF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MillenniumLove.Service", "MillenniumLove.Service\MillenniumLove.Service.csproj", "{803AEB0F-AD95-4F74-9655-4D0276FDDB4A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MillenniumLove.Models", "MillenniumLove.Models\MillenniumLove.Models.csproj", "{7B3D7DFC-FA6F-461C-9800-B1E1867D24F7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MillenniumLove", "MillenniumLove\MillenniumLove.csproj", "{8FF5B0FD-BDB1-4146-807C-ADB3293685CB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C186D982-7F76-4110-8597-B3CA900B6489}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C186D982-7F76-4110-8597-B3CA900B6489}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C186D982-7F76-4110-8597-B3CA900B6489}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C186D982-7F76-4110-8597-B3CA900B6489}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2255F459-962F-4F3F-AFE5-9A4A92B8F1AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2255F459-962F-4F3F-AFE5-9A4A92B8F1AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2255F459-962F-4F3F-AFE5-9A4A92B8F1AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2255F459-962F-4F3F-AFE5-9A4A92B8F1AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{803AEB0F-AD95-4F74-9655-4D0276FDDB4A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{803AEB0F-AD95-4F74-9655-4D0276FDDB4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{803AEB0F-AD95-4F74-9655-4D0276FDDB4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{803AEB0F-AD95-4F74-9655-4D0276FDDB4A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B3D7DFC-FA6F-461C-9800-B1E1867D24F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B3D7DFC-FA6F-461C-9800-B1E1867D24F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B3D7DFC-FA6F-461C-9800-B1E1867D24F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B3D7DFC-FA6F-461C-9800-B1E1867D24F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8FF5B0FD-BDB1-4146-807C-ADB3293685CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8FF5B0FD-BDB1-4146-807C-ADB3293685CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8FF5B0FD-BDB1-4146-807C-ADB3293685CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8FF5B0FD-BDB1-4146-807C-ADB3293685CB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
