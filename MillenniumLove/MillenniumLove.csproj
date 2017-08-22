@@ -39,6 +39,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
@@ -51,10 +52,14 @@
   <ItemGroup>
     <Compile Include="ApiResult.cs" />
     <Compile Include="Attribute\FinalValueAttribute.cs" />
+    <Compile Include="Config\Config.cs" />
     <Compile Include="Config\Md5Config.cs" />
+    <Compile Include="Extender\EncryptExtender.cs" />
+    <Compile Include="Extender\EnumHelper.cs" />
     <Compile Include="Extender\Extender.cs" />
     <Compile Include="Extender\FromJsonExtender.cs" />
     <Compile Include="Extender\IsExtender.cs" />
+    <Compile Include="Attribute\MaskIgnoreAttribute.cs" />
     <Compile Include="Log\LogLevel.cs" />
     <Compile Include="Log\LogRecord.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -65,6 +70,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

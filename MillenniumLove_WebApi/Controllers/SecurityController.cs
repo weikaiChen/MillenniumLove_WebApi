@@ -1,52 +1,47 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using MillenniumLove.Service;
 using MillenniumLove;
 using Newtonsoft.Json;
-using MillenniumLove.Models;  
+using MillenniumLove.Models;
 
 namespace MillenniumLove_WebApi.Controllers
 {
-    public class SecurityController : ApiController
+    [LogFilter]
+    public class SecurityController : BaseController
     {
         [HttpPost]
         public string GetToken(string v)
         {
-            var apiResult = new ApiResult<String>();
 
+            ApiResult apiResult;
+            var jsonStr = "";
             var decrypt = AesUtility.Decrypt(v);
-            var cardNo = "";
-            var opMid = "";
-            var token = "";
+
             try
             {
-                var model = decrypt.FromJson<GetTokenModel>();
-
-                if (!model.isValid())
+                var model = decrypt.FromJson<GetTokenModel.Input>();
+                var checkResult = model.IsValid<string>();
+                if (checkResult.ErrorCode != EnumItem.Get(Ref.ErrorCode._000).FinalValue)
                 {
-                    apiResult.ErrorCode = "";
-                    apiResult.ErrorMessage = "";
+                    jsonStr = ReturnJsonString(checkResult);
+                    return jsonStr;
                 }
-                token = SecurityService.TokenGenerate();
-                var result = SecurityService.TokenSave(cardNo, opMid, token);
+                var service = new SecurityService();
 
-                apiResult.ErrorCode = result.ErrorCode;
-                apiResult.ErrorMessage = result.ErrorMessage;
-                apiResult.Data = token;
+                apiResult = service.Execute(model);
 
-                var jsonStr = JsonConvert.SerializeObject(apiResult);
+                jsonStr = ReturnJsonString(apiResult);
             }
             catch (Exception ex)
             {
-
-                throw;
+                LogRecord.Create()
+                    .SetMessage(ex.Message)
+                    .Error()
+                    ;
             }
-            
-            return token;
+
+            return jsonStr;
         }
     }
 }

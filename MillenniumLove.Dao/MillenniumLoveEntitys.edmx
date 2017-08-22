@@ -1,0 +1,415 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="MillenniumLoveModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BE_User">
+          <Key>
+            <PropertyRef Name="User_ID" />
+          </Key>
+          <Property Name="User_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="User_Account" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="User_Password" Type="varchar" MaxLength="50" />
+          <Property Name="User_Disabled" Type="bit" />
+          <Property Name="User_Group" Type="tinyint" Nullable="false" />
+          <Property Name="User_Create_Date" Type="smalldatetime" Nullable="false" />
+          <Property Name="User_Create_User" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="User_Update_Date" Type="smalldatetime" Nullable="false" />
+          <Property Name="User_Update_User" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="User_Update_Cnt" Type="smallint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Consent_Record">
+          <Key>
+            <PropertyRef Name="User_ID" />
+            <PropertyRef Name="Consent_Ver" />
+          </Key>
+          <Property Name="User_ID" Type="int" Nullable="false" />
+          <Property Name="Consent_Ver" Type="varchar" MaxLength="11" Nullable="false" />
+          <Property Name="Consent_Sign_Date" Type="smalldatetime" Nullable="false" />
+          <Property Name="Create_Date" Type="smalldatetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Document">
+          <Key>
+            <PropertyRef Name="Document_ID" />
+          </Key>
+          <Property Name="Document_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Document_Type" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="Document_Version" Type="varchar" MaxLength="11" Nullable="false" />
+          <Property Name="Document_Content" Type="nvarchar(max)" />
+          <Property Name="Document_Publish_Date" Type="date" Nullable="false" />
+          <Property Name="Document_Confirm_Date" Type="smalldatetime" />
+          <Property Name="Document_Create_Date" Type="smalldatetime" Nullable="false" />
+          <Property Name="Document_Create_User" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Document_Update_Date" Type="smalldatetime" Nullable="false" />
+          <Property Name="Document_Update_User" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Document_Update_Cnt" Type="smallint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Measure_Data">
+          <Key>
+            <PropertyRef Name="Data_ID" />
+          </Key>
+          <Property Name="Data_ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Data_User_ID" Type="int" Nullable="false" />
+          <Property Name="Data_Measure_Time" Type="smalldatetime" Nullable="false" />
+          <Property Name="Data_Measure_Period" Type="smalldatetime" Nullable="false" />
+          <Property Name="Data_Measure_City" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Data_Measure_District" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Data_Height" Type="float" Nullable="false" />
+          <Property Name="Data_Weight" Type="float" Nullable="false" />
+          <Property Name="Data_Waist" Type="float" Nullable="false" />
+          <Property Name="Data_Systolic_Pressure" Type="float" Nullable="false" />
+          <Property Name="Data_Diastolic_Pressure" Type="float" Nullable="false" />
+          <Property Name="Data_Heart_Rate" Type="tinyint" Nullable="false" />
+          <Property Name="Data_BMI" Type="numeric" Precision="3" Scale="1" StoreGeneratedPattern="Computed" />
+          <Property Name="Data_Create_Date" Type="smalldatetime" Nullable="false" />
+          <Property Name="Data_Create_User" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Data_Update_Date" Type="smalldatetime" Nullable="false" />
+          <Property Name="Data_Update_User" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Data_Update_Cnt" Type="smallint" Nullable="false" />
+        </EntityType>
+        <!--產生期間發現錯誤:
+警告 6002: 資料表/檢視 '1000LOVE.dbo.Token_Record' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
+        <EntityType Name="Token_Record">
+          <Key>
+            <PropertyRef Name="Token" />
+            <PropertyRef Name="Token_Machine_ID" />
+            <PropertyRef Name="Token_Function_ID" />
+            <PropertyRef Name="Token_StartDate" />
+            <PropertyRef Name="Token_ExpireDate" />
+            <PropertyRef Name="Token_IsUsed" />
+            <PropertyRef Name="Token_Create_Date" />
+            <PropertyRef Name="Token_Create_User" />
+            <PropertyRef Name="Token_Update_Date" />
+            <PropertyRef Name="Token_Update_User" />
+          </Key>
+          <Property Name="Token" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Token_Machine_ID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Token_Function_ID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Token_StartDate" Type="datetime" Nullable="false" />
+          <Property Name="Token_ExpireDate" Type="datetime" Nullable="false" />
+          <Property Name="Token_IsUsed" Type="bit" Nullable="false" />
+          <Property Name="Token_Create_Date" Type="smalldatetime" Nullable="false" />
+          <Property Name="Token_Create_User" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Token_Update_Date" Type="smalldatetime" Nullable="false" />
+          <Property Name="Token_Update_User" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UI_User">
+          <Key>
+            <PropertyRef Name="User_ID" />
+          </Key>
+          <Property Name="User_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="User_ibon_ID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="User_ibon_Name" Type="varchar" MaxLength="50" />
+          <Property Name="User_Birthdate" Type="date" />
+          <Property Name="User_Gender" Type="bit" />
+          <Property Name="Consent_Ver" Type="varchar" MaxLength="11" />
+          <Property Name="User_Create_Date" Type="smalldatetime" Nullable="false" />
+          <Property Name="User_Create_User" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="User_Update_Date" Type="smalldatetime" Nullable="false" />
+          <Property Name="User_Update_User" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="User_Update_Cnt" Type="smallint" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Measure_Data_UI_User">
+          <End Role="UI_User" Type="Self.UI_User" Multiplicity="1" />
+          <End Role="Measure_Data" Type="Self.Measure_Data" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UI_User">
+              <PropertyRef Name="User_ID" />
+            </Principal>
+            <Dependent Role="Measure_Data">
+              <PropertyRef Name="Data_User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MillenniumLoveModelStoreContainer">
+          <EntitySet Name="BE_User" EntityType="Self.BE_User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Consent_Record" EntityType="Self.Consent_Record" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Document" EntityType="Self.Document" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Measure_Data" EntityType="Self.Measure_Data" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UI_User" EntityType="Self.UI_User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Token_Record" EntityType="Self.Token_Record" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Token_Record].[Token] AS [Token], 
+    [Token_Record].[Token_Machine_ID] AS [Token_Machine_ID], 
+    [Token_Record].[Token_Function_ID] AS [Token_Function_ID], 
+    [Token_Record].[Token_StartDate] AS [Token_StartDate], 
+    [Token_Record].[Token_ExpireDate] AS [Token_ExpireDate], 
+    [Token_Record].[Token_IsUsed] AS [Token_IsUsed], 
+    [Token_Record].[Token_Create_Date] AS [Token_Create_Date], 
+    [Token_Record].[Token_Create_User] AS [Token_Create_User], 
+    [Token_Record].[Token_Update_Date] AS [Token_Update_Date], 
+    [Token_Record].[Token_Update_User] AS [Token_Update_User]
+    FROM [dbo].[Token_Record] AS [Token_Record]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Measure_Data_UI_User" Association="Self.FK_Measure_Data_UI_User">
+            <End Role="UI_User" EntitySet="UI_User" />
+            <End Role="Measure_Data" EntitySet="Measure_Data" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MillenniumLoveModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="BE_User">
+          <Key>
+            <PropertyRef Name="User_ID" />
+          </Key>
+          <Property Name="User_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="User_Account" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="User_Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="User_Disabled" Type="Boolean" />
+          <Property Name="User_Group" Type="Byte" Nullable="false" />
+          <Property Name="User_Create_Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="User_Create_User" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="User_Update_Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="User_Update_User" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="User_Update_Cnt" Type="Int16" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Consent_Record">
+          <Key>
+            <PropertyRef Name="User_ID" />
+            <PropertyRef Name="Consent_Ver" />
+          </Key>
+          <Property Name="User_ID" Type="Int32" Nullable="false" />
+          <Property Name="Consent_Ver" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Consent_Sign_Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Create_Date" Type="DateTime" Nullable="false" Precision="0" />
+        </EntityType>
+        <EntityType Name="Document">
+          <Key>
+            <PropertyRef Name="Document_ID" />
+          </Key>
+          <Property Name="Document_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Document_Type" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Document_Version" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Document_Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Document_Publish_Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Document_Confirm_Date" Type="DateTime" Precision="0" />
+          <Property Name="Document_Create_Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Document_Create_User" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Document_Update_Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Document_Update_User" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Document_Update_Cnt" Type="Int16" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Measure_Data">
+          <Key>
+            <PropertyRef Name="Data_ID" />
+          </Key>
+          <Property Name="Data_ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Data_User_ID" Type="Int32" Nullable="false" />
+          <Property Name="Data_Measure_Time" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Data_Measure_Period" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Data_Measure_City" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Data_Measure_District" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Data_Height" Type="Double" Nullable="false" />
+          <Property Name="Data_Weight" Type="Double" Nullable="false" />
+          <Property Name="Data_Waist" Type="Double" Nullable="false" />
+          <Property Name="Data_Systolic_Pressure" Type="Double" Nullable="false" />
+          <Property Name="Data_Diastolic_Pressure" Type="Double" Nullable="false" />
+          <Property Name="Data_Heart_Rate" Type="Byte" Nullable="false" />
+          <Property Name="Data_BMI" Type="Decimal" Precision="3" Scale="1" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="Data_Create_Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Data_Create_User" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Data_Update_Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Data_Update_User" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Data_Update_Cnt" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="UI_User" Relationship="Self.FK_Measure_Data_UI_User" FromRole="Measure_Data" ToRole="UI_User" />
+        </EntityType>
+        <EntityType Name="UI_User">
+          <Key>
+            <PropertyRef Name="User_ID" />
+          </Key>
+          <Property Name="User_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="User_ibon_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="User_ibon_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="User_Birthdate" Type="DateTime" Precision="0" />
+          <Property Name="User_Gender" Type="Boolean" />
+          <Property Name="Consent_Ver" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="User_Create_Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="User_Create_User" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="User_Update_Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="User_Update_User" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="User_Update_Cnt" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="Measure_Data" Relationship="Self.FK_Measure_Data_UI_User" FromRole="UI_User" ToRole="Measure_Data" />
+        </EntityType>
+        <EntityType Name="Token_Record">
+          <Key>
+            <PropertyRef Name="Token" />
+            <PropertyRef Name="Token_Machine_ID" />
+            <PropertyRef Name="Token_Function_ID" />
+            <PropertyRef Name="Token_StartDate" />
+            <PropertyRef Name="Token_ExpireDate" />
+            <PropertyRef Name="Token_IsUsed" />
+            <PropertyRef Name="Token_Create_Date" />
+            <PropertyRef Name="Token_Create_User" />
+            <PropertyRef Name="Token_Update_Date" />
+            <PropertyRef Name="Token_Update_User" />
+          </Key>
+          <Property Name="Token" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Token_Machine_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Token_Function_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Token_StartDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Token_ExpireDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Token_IsUsed" Type="Boolean" Nullable="false" />
+          <Property Name="Token_Create_Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Token_Create_User" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Token_Update_Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Token_Update_User" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Measure_Data_UI_User">
+          <End Role="UI_User" Type="Self.UI_User" Multiplicity="1" />
+          <End Role="Measure_Data" Type="Self.Measure_Data" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UI_User">
+              <PropertyRef Name="User_ID" />
+            </Principal>
+            <Dependent Role="Measure_Data">
+              <PropertyRef Name="Data_User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BE_User" EntityType="Self.BE_User" />
+          <EntitySet Name="Consent_Record" EntityType="Self.Consent_Record" />
+          <EntitySet Name="Document" EntityType="Self.Document" />
+          <EntitySet Name="Measure_Data" EntityType="Self.Measure_Data" />
+          <EntitySet Name="UI_User" EntityType="Self.UI_User" />
+          <EntitySet Name="Token_Record" EntityType="Self.Token_Record" />
+          <AssociationSet Name="FK_Measure_Data_UI_User" Association="Self.FK_Measure_Data_UI_User">
+            <End Role="UI_User" EntitySet="UI_User" />
+            <End Role="Measure_Data" EntitySet="Measure_Data" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MillenniumLoveModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="BE_User">
+            <EntityTypeMapping TypeName="MillenniumLoveModel.BE_User">
+              <MappingFragment StoreEntitySet="BE_User">
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="User_Account" ColumnName="User_Account" />
+                <ScalarProperty Name="User_Password" ColumnName="User_Password" />
+                <ScalarProperty Name="User_Disabled" ColumnName="User_Disabled" />
+                <ScalarProperty Name="User_Group" ColumnName="User_Group" />
+                <ScalarProperty Name="User_Create_Date" ColumnName="User_Create_Date" />
+                <ScalarProperty Name="User_Create_User" ColumnName="User_Create_User" />
+                <ScalarProperty Name="User_Update_Date" ColumnName="User_Update_Date" />
+                <ScalarProperty Name="User_Update_User" ColumnName="User_Update_User" />
+                <ScalarProperty Name="User_Update_Cnt" ColumnName="User_Update_Cnt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Consent_Record">
+            <EntityTypeMapping TypeName="MillenniumLoveModel.Consent_Record">
+              <MappingFragment StoreEntitySet="Consent_Record">
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="Consent_Ver" ColumnName="Consent_Ver" />
+                <ScalarProperty Name="Consent_Sign_Date" ColumnName="Consent_Sign_Date" />
+                <ScalarProperty Name="Create_Date" ColumnName="Create_Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Document">
+            <EntityTypeMapping TypeName="MillenniumLoveModel.Document">
+              <MappingFragment StoreEntitySet="Document">
+                <ScalarProperty Name="Document_ID" ColumnName="Document_ID" />
+                <ScalarProperty Name="Document_Type" ColumnName="Document_Type" />
+                <ScalarProperty Name="Document_Version" ColumnName="Document_Version" />
+                <ScalarProperty Name="Document_Content" ColumnName="Document_Content" />
+                <ScalarProperty Name="Document_Publish_Date" ColumnName="Document_Publish_Date" />
+                <ScalarProperty Name="Document_Confirm_Date" ColumnName="Document_Confirm_Date" />
+                <ScalarProperty Name="Document_Create_Date" ColumnName="Document_Create_Date" />
+                <ScalarProperty Name="Document_Create_User" ColumnName="Document_Create_User" />
+                <ScalarProperty Name="Document_Update_Date" ColumnName="Document_Update_Date" />
+                <ScalarProperty Name="Document_Update_User" ColumnName="Document_Update_User" />
+                <ScalarProperty Name="Document_Update_Cnt" ColumnName="Document_Update_Cnt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Measure_Data">
+            <EntityTypeMapping TypeName="MillenniumLoveModel.Measure_Data">
+              <MappingFragment StoreEntitySet="Measure_Data">
+                <ScalarProperty Name="Data_ID" ColumnName="Data_ID" />
+                <ScalarProperty Name="Data_User_ID" ColumnName="Data_User_ID" />
+                <ScalarProperty Name="Data_Measure_Time" ColumnName="Data_Measure_Time" />
+                <ScalarProperty Name="Data_Measure_Period" ColumnName="Data_Measure_Period" />
+                <ScalarProperty Name="Data_Measure_City" ColumnName="Data_Measure_City" />
+                <ScalarProperty Name="Data_Measure_District" ColumnName="Data_Measure_District" />
+                <ScalarProperty Name="Data_Height" ColumnName="Data_Height" />
+                <ScalarProperty Name="Data_Weight" ColumnName="Data_Weight" />
+                <ScalarProperty Name="Data_Waist" ColumnName="Data_Waist" />
+                <ScalarProperty Name="Data_Systolic_Pressure" ColumnName="Data_Systolic_Pressure" />
+                <ScalarProperty Name="Data_Diastolic_Pressure" ColumnName="Data_Diastolic_Pressure" />
+                <ScalarProperty Name="Data_Heart_Rate" ColumnName="Data_Heart_Rate" />
+                <ScalarProperty Name="Data_BMI" ColumnName="Data_BMI" />
+                <ScalarProperty Name="Data_Create_Date" ColumnName="Data_Create_Date" />
+                <ScalarProperty Name="Data_Create_User" ColumnName="Data_Create_User" />
+                <ScalarProperty Name="Data_Update_Date" ColumnName="Data_Update_Date" />
+                <ScalarProperty Name="Data_Update_User" ColumnName="Data_Update_User" />
+                <ScalarProperty Name="Data_Update_Cnt" ColumnName="Data_Update_Cnt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UI_User">
+            <EntityTypeMapping TypeName="MillenniumLoveModel.UI_User">
+              <MappingFragment StoreEntitySet="UI_User">
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="User_ibon_ID" ColumnName="User_ibon_ID" />
+                <ScalarProperty Name="User_ibon_Name" ColumnName="User_ibon_Name" />
+                <ScalarProperty Name="User_Birthdate" ColumnName="User_Birthdate" />
+                <ScalarProperty Name="User_Gender" ColumnName="User_Gender" />
+                <ScalarProperty Name="Consent_Ver" ColumnName="Consent_Ver" />
+                <ScalarProperty Name="User_Create_Date" ColumnName="User_Create_Date" />
+                <ScalarProperty Name="User_Create_User" ColumnName="User_Create_User" />
+                <ScalarProperty Name="User_Update_Date" ColumnName="User_Update_Date" />
+                <ScalarProperty Name="User_Update_User" ColumnName="User_Update_User" />
+                <ScalarProperty Name="User_Update_Cnt" ColumnName="User_Update_Cnt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Token_Record">
+            <EntityTypeMapping TypeName="MillenniumLoveModel.Token_Record">
+              <MappingFragment StoreEntitySet="Token_Record">
+                <ScalarProperty Name="Token" ColumnName="Token" />
+                <ScalarProperty Name="Token_Machine_ID" ColumnName="Token_Machine_ID" />
+                <ScalarProperty Name="Token_Function_ID" ColumnName="Token_Function_ID" />
+                <ScalarProperty Name="Token_StartDate" ColumnName="Token_StartDate" />
+                <ScalarProperty Name="Token_ExpireDate" ColumnName="Token_ExpireDate" />
+                <ScalarProperty Name="Token_IsUsed" ColumnName="Token_IsUsed" />
+                <ScalarProperty Name="Token_Create_Date" ColumnName="Token_Create_Date" />
+                <ScalarProperty Name="Token_Create_User" ColumnName="Token_Create_User" />
+                <ScalarProperty Name="Token_Update_Date" ColumnName="Token_Update_Date" />
+                <ScalarProperty Name="Token_Update_User" ColumnName="Token_Update_User" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="無" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

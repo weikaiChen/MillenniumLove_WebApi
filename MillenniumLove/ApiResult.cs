@@ -9,7 +9,7 @@ namespace MillenniumLove
     public class ApiResult
     {
         public string RequestID { get; set; }
-        public string ErrorCode { get; set; }
+        public string ErrorCode { get; set; } = "000";
         public string ErrorMessage { get; set; }
 
     }
@@ -17,10 +17,10 @@ namespace MillenniumLove
 
 
 
-    public class ApiResult<T>: ApiResult
+    public class ApiResult<T> : ApiResult
     {
         public T Data { get; set; }
-        public ApiResult():base()
+        public ApiResult() : base()
         {
             if (
                 typeof(T).Is<IDynamicMetaObjectProvider>())
@@ -34,6 +34,6 @@ namespace MillenniumLove
             }
         }
 
- 
+
     }
 }

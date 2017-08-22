@@ -11,7 +11,8 @@ namespace MillenniumLove
         public static string Key
         {
             get {
-                return "MillenniumLovelyMillenniumLovely";
+
+                return Config.Application.Get("Token","Key", "MillenniumLovelyMillenniumLovely");
             }
         }
 
@@ -19,7 +20,15 @@ namespace MillenniumLove
         {
             get
             {
-                return "MillenniumLoveIV";
+                return Config.Application.Get("Token", "IV", "MillenniumLoveIV");
+            }
+        }
+
+        public static string Duration
+        {
+            get
+            {
+                return Config.Application.Get("Token", "Duration", "5000");
             }
         }
     }

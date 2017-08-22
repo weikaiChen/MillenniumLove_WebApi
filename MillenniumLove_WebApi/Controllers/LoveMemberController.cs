@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
-using log4net;
+using MillenniumLove.Service;
+using MillenniumLove;
+using Newtonsoft.Json;
+using MillenniumLove.Models;
 
 namespace MillenniumLove_WebApi.Controllers
 {
@@ -20,8 +19,31 @@ namespace MillenniumLove_WebApi.Controllers
         /// <returns></returns>
         public string QueryByOpMid(string v)
         {
-            
-            throw new NotImplementedException();
+
+            ApiResult apiResult;
+            var jsonStr = "";
+            var decrypt = AesUtility.Decrypt(v);
+
+            try
+            {
+                var model = decrypt.FromJson<OpMidModel.Input>();
+
+                var service = new LoveMemberService();
+
+                apiResult = service.Execute(model);
+
+                jsonStr = JsonConvert.SerializeObject(apiResult);
+                jsonStr = jsonStr.AesEncrypt();
+            }
+            catch (Exception ex)
+            {
+                LogRecord.Create()
+                    .SetMessage(ex.Message)
+                    .Error()
+                    ;
+            }
+
+            return jsonStr;
         }
 
 

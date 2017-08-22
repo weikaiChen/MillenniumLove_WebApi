@@ -9,23 +9,33 @@ namespace MillenniumLove
 {
     public class Md5Utility
     {
+
+        /// <summary>
+        /// 16位元加密
+        /// </summary>
+        /// <param name="source"></param>
+        /// <returns></returns>
         public static string Encrypt16(string source)
         {
-            var transferSource = Md5Config.PreFix + source + Md5Config.PostFix;
+            var transferSource = source;
             MD5CryptoServiceProvider md5 = new MD5CryptoServiceProvider();
             string encryptContent = BitConverter.ToString(md5.ComputeHash(UTF8Encoding.Default.GetBytes(transferSource)), 4, 8);
-            var test= BitConverter.ToString(md5.ComputeHash(UTF8Encoding.Default.GetBytes(transferSource)));
+            var test = BitConverter.ToString(md5.ComputeHash(UTF8Encoding.Default.GetBytes(transferSource)));
             encryptContent = encryptContent.Replace("-", "");
             return encryptContent;
         }
 
-
+        /// <summary>
+        /// 32位元加密
+        /// </summary>
+        /// <param name="source"></param>
+        /// <returns></returns>
         public static string Encrypt32(string source)
         {
-            var transferSource = Md5Config.PreFix + source + Md5Config.PostFix;
-
+            var transferSource = source;
+            var encrypt = "";
             try
-            {    
+            {
                 MD5 md5 = MD5.Create();
 
                 //注意編碼UTF8/Unicode等的選擇
@@ -33,7 +43,7 @@ namespace MillenniumLove
                 for (int i = 0; i < s.Length; i++)
                 {
                     // 得到的字串是16進制格式。格式化后的字串是小寫，如果用(X)則大寫
-                    transferSource = transferSource + s[i].ToString("X");
+                    encrypt = encrypt + s[i].ToString("X");
                 }
             }
             catch (Exception ex)
@@ -43,8 +53,8 @@ namespace MillenniumLove
                     .SetMessage(ex.Message)
                     .Error();
             }
-           
-            return transferSource;
+
+            return encrypt;
         }
 
 
